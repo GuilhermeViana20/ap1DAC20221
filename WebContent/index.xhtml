@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<title>Cadastro de Instrumentos</title>
+		
+		<style type="text/css">
+			.ui-g div {
+			    text-align: center;
+			    border: 1px solid #fafafa;
+			}
+        </style>
+	</h:head>
+
+	<h:body>
+	
+		<h:form>
+
+		    <p:menubar>
+		        <p:menuitem icon="pi pi-home">Home</p:menuitem>
+		 		<p:menuitem outcome="listagem" icon="pi pi-bars">Instrumentos</p:menuitem>
+		    </p:menubar>
+
+		</h:form>
+
+		<h:form id="formulario">
+
+    		<p:panel id="panel" header="Cadastrar Instrumentos" style="margin-top: 40px; margin-bottom: 10px">
+    		
+    			<p:growl id="messages" showDetail="true"/>
+
+		        <div class="ui-g">
+				    <div class="ui-g-3">
+						<p:inputText style="width: 100%" value="#{instrumentoBean.instrumento.nome}" id="nome" placeholder="Nome do instrumento" required="true"/>
+					</div>
+				    <div class="ui-g-3">
+				    	<p:inputText style="width: 100%" value="#{instrumentoBean.instrumento.marca}" id="marca" placeholder="Nome da marca" required="true"/>
+				    </div>
+					<div class="ui-g-3">
+						<p:inputText style="width: 100%" value="#{instrumentoBean.instrumento.modelo}" id="modelo" placeholder="Modelo do instrumento" required="true"/>
+					</div>
+					<div class="ui-g-2">
+				    	<p:inputNumber style="width: 100%" value="#{instrumentoBean.instrumento.valor}" id="valor" placeholder="Valor do instrumento" required="true"/>
+				    </div>
+				    <div class="ui-g-1">
+		    			<p:commandButton value="Cadastrar" action="#{instrumentoBean.salvar}" update="formulario"/>
+				    </div>
+				</div>
+
+		    </p:panel>
+
+		</h:form>
+
+	</h:body>
+
+</html>
