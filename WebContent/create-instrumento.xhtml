@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Atualizar Instrumento</title>
+	<title>Cadastro de Instrumentos</title>
 
 	<style type="text/css">
 .ui-g div {
@@ -18,21 +18,33 @@
 </h:head>
 
 <h:body>
+	<div class="card">
+		<p:tabMenu activeIndex="#{param.i}">
+			<p:menuitem value="Cadastro de usuários" outcome="create-user"
+				icon="pi pi-fw pi-user">
+				<f:param name="i" value="0" />
+			</p:menuitem>
+			<p:menuitem value="Listagem de usuário" outcome="list-user"
+				icon="pi pi-fw pi-users">
+				<f:param name="i" value="1" />
+			</p:menuitem>
+			<p:menuitem value="Cadastro de instrumento" outcome="create-instrumento"
+				icon="pi pi-fw pi-plus">
+				<f:param name="i" value="2" />
+			</p:menuitem>
+			<p:menuitem value="Listagem de instrumentos" outcome="list-instrumentos"
+				icon="pi pi-fw pi-list">
+				<f:param name="i" value="3" />
+			</p:menuitem>
+		</p:tabMenu>
+	</div>
 
 	<h:form id="formulario">
 
-		<p:panel id="panel" header="Atualizar Instrumento"
+		<p:panel id="panel" header="Cadastrar Instrumentos"
 			style="margin-top: 40px; margin-bottom: 10px">
 
 			<p:growl id="messages" showDetail="true" />
-
-			<div class="ui-g">
-				<div class="ui-g-6">
-					<p:inputText style="width: 100%"
-						value="#{instrumentoBean.instrumento.id}" id="id"
-						placeholder="Id" required="true"/>
-				</div>
-			</div>
 
 			<div class="ui-g">
 				<div class="ui-g-6">
@@ -54,20 +66,21 @@
 						placeholder="Modelo do instrumento" required="true" />
 				</div>
 				<div class="ui-g-6">
-					<p:inputNumber style="width: 100%"
+					<p:inputText style="width: 100%"
 						value="#{instrumentoBean.instrumento.valor}" id="valor"
-						placeholder="Valor do instrumento" required="true" />
+						placeholder="Valor do instrumento" required="true" type="number"/>
 				</div>
 
 			</div>
 			<div class="ui-g">
 
 				<div class="ui-g-6">
-					<p:commandButton value="Atualizar" action="#{instrumentoBean.update}"
-					update="formulario" />
+					<p:commandButton value="Cadastrar"
+						action="#{instrumentoBean.salvar}" update="formulario" />
 				</div>
 				<div class="ui-g-6">
-					<p:link outcome="listagem" value="Listagem" />
+
+					<p:link outcome="list-instrumentos" value="Listagem" />
 				</div>
 
 			</div>

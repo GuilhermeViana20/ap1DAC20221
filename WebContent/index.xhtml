@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Cadastro de Instrumentos</title>
+	<title>Login</title>
 
 	<style type="text/css">
 .ui-g div {
@@ -18,51 +18,35 @@
 </h:head>
 
 <h:body>
-
 	<h:form id="formulario">
 
-		<p:panel id="panel" header="Cadastrar Instrumentos"
+		<p:panel id="panel" header="Login"
 			style="margin-top: 40px; margin-bottom: 10px">
 
 			<p:growl id="messages" showDetail="true" />
-
 			<div class="ui-g">
-				<div class="ui-g-6">
+				<div class="ui-g-12">
 					<p:inputText style="width: 100%"
-						value="#{instrumentoBean.instrumento.nome}" id="nome"
-						placeholder="Nome do instrumento" required="true" />
-				</div>
-				<div class="ui-g-6">
-					<p:inputText style="width: 100%"
-						value="#{instrumentoBean.instrumento.marca}" id="marca"
-						placeholder="Nome da marca" required="true" />
+						value="#{usuarioBean.usuario.usuario}" id="usuario"
+						placeholder="Usuário" required="true" />
 				</div>
 
 			</div>
 			<div class="ui-g">
-				<div class="ui-g-6">
+				<div class="ui-g-12">
 					<p:inputText style="width: 100%"
-						value="#{instrumentoBean.instrumento.modelo}" id="modelo"
-						placeholder="Modelo do instrumento" required="true" />
+						value="#{usuarioBean.usuario.senha}" id="senha"
+						placeholder="Senha" type="password" required="true" />
 				</div>
-				<div class="ui-g-6">
-					<p:inputNumber style="width: 100%"
-						value="#{instrumentoBean.instrumento.valor}" id="valor"
-						placeholder="Valor do instrumento" required="true" />
-				</div>
-
 			</div>
 			<div class="ui-g">
 
 				<div class="ui-g-6">
-					<p:commandButton value="Cadastrar"
-						action="#{instrumentoBean.salvar}" update="formulario" />
+				<p:commandButton value="Entrar" styleClass="fs-button-portfolio"
+						action="#{usuarioBean.login}"
+						ajax="false">
+					</p:commandButton>
 				</div>
-				<div class="ui-g-6">
-
-					<p:link outcome="listagem" value="Listagem" />
-				</div>
-
 			</div>
 		</p:panel>
 

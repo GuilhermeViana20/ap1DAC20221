@@ -50,7 +50,7 @@ public class InstrumentoBean {
         	FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro!", "Erro instrumento não encontrado."));
         }
-        return "update";
+        return "update-instrumento";
      }
     
     public String update() {
