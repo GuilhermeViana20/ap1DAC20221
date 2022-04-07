@@ -11,17 +11,8 @@
 	</h:head>
 
 	<h:body>
-	
-		<h:form>
-
-		    <p:menubar>
-		        <p:menuitem outcome="index" icon="pi pi-home">Home</p:menuitem>
-		 		<p:menuitem icon="pi pi-bars">Instrumentos</p:menuitem>
-		    </p:menubar>
-
-		</h:form>
-	
 		<h:form id="formulario">
+				<p:link outcome="index" value="Voltar" />
 		
 			<p:panel id="panel" header="Listagem de Instrumentos" style="margin-top: 40px;">
 			
@@ -51,9 +42,10 @@
 					</p:column>
 					
 					<p:column headerText="Ação">
-						<p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash">
-			                    <f:setPropertyActionListener value="#{instrumento}" target="#{instrumentoBean.deletar}"/>
-		                </p:commandButton>
+						<p:commandButton value="Excluir" action="#{instrumentoBean.deletar(instrumento.id)}" ajax="false"  />
+ 						<p:commandButton value="Atualizar" styleClass="fs-button-portfolio"
+                        action="#{instrumentoBean.editInstrumento(instrumento.id)}" ajax="false">
+                 </p:commandButton>
 					</p:column>
 					
 				</p:dataTable>

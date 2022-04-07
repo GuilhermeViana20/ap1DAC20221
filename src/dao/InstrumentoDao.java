@@ -1,5 +1,6 @@
 package dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -19,29 +20,46 @@ public class InstrumentoDao {
 		entityManager.close();
 	}
 	
-	public static void deletar(Instrumento instrumento)
+	public static void deletar(Integer id)
 	{
 		EntityManager entityManager = JPAUtil.criarEntityManager();
 		entityManager.getTransaction().begin();
-		instrumento = entityManager.find(Instrumento.class, instrumento.getId());
-		entityManager.remove(2);
+		Instrumento instrumento = entityManager.find(Instrumento.class, id);
+		entityManager.remove(instrumento);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}
 	
-	public static List<Instrumento> listar()
-	{
-		EntityManager entityManager = JPAUtil.criarEntityManager();
-		Query query = entityManager.createQuery("SELECT instrumento FROM Instrumento instrumento");
-		List<Instrumento> listaInstrumentos = query.getResultList();
-		entityManager.close();
-		return listaInstrumentos;
+	public static void update(Instrumento instrumento) {
+		EntityManager s = JPAUtil.criarEntityManager();
+		s.getTransaction().begin();
+		s.merge(instrumento);
+		s.getTransaction().commit();
+		s.close();
 	}
 	
-	public static int contar()
-	{
-		List<Instrumento> listaInstrumentos = InstrumentoDao.listar();
-		return listaInstrumentos.size();
+	public static Instrumento getById(Integer id) {
+		EntityManager s = JPAUtil.criarEntityManager();
+		s.getTransaction().begin();
+		Instrumento instrumento = s.find(Instrumento.class, id);
+		s.close();
+		return instrumento;
+	}
+	
+	public static List<Instrumento> listar(){
+		EntityManager s = JPAUtil.criarEntityManager();
+		Query q = s.createQuery("select e from Instrumento e");
+		List<Instrumento> lista = q.getResultList();
+		s.close();
+		return lista;
+	}
+	
+	public static Integer count(){
+		EntityManager s = JPAUtil.criarEntityManager();
+		Query q = s.createNativeQuery("select count(id) from instrumento");
+		int count = ((BigInteger) q.getSingleResult()).intValue();
+		s.close();
+		return count;
 	}
 	
 }

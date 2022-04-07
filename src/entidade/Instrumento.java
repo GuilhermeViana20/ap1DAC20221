@@ -12,10 +12,19 @@ public class Instrumento {
 
     @Id
 	@GeneratedValue
+	@Column(name= "id")
     private Integer id;
+    
+	@Column(name= "nome")
     private String nome;
+	
+	@Column(name= "marca")
     private String marca;
+	
+	@Column(name= "modelo")
     private String modelo;
+
+	@Column(name= "valor")
     private Double valor;
 
     @Override

@@ -27,15 +27,42 @@ public class InstrumentoBean {
 		return null;		
 	}
 	
-	public String deletar() {
+	public String deletar(Integer id) {
 		try {
-			InstrumentoDao.deletar(instrumento);
+			InstrumentoDao.deletar(id);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Instrumento deletado com sucesso!"));
 			instrumento = new Instrumento();
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Ops! Não foi possível realizar essa operação."));
 		}
 		return null;		
+	}
+	
+	public String editInstrumento(Integer id) {
+        Instrumento i = InstrumentoDao.getById(id);
+        if(i !=null){
+              instrumento.setMarca(i.getMarca());
+              instrumento.setModelo(i.getModelo());
+              instrumento.setNome(i.getNome());
+              instrumento.setValor(i.getValor());
+              instrumento.setId(i.getId());
+        }else{
+        	FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro!", "Erro instrumento n�o encontrado."));
+        }
+        return "update";
+     }
+    
+    public String update() {
+		try {
+			InstrumentoDao.update(instrumento);
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "SUCESSO!", "Instrumento atualizado com sucesso."));
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro!", "Erro atualizar instrumento."));
+		}
+		return null;
 	}
 	
 	public Instrumento getInstrumento() {
@@ -58,7 +85,7 @@ public class InstrumentoBean {
 	}
 	
 	public int getCount() {
-		count = InstrumentoDao.contar();
+		count = InstrumentoDao.count();
 		return count;
 	}
 	

@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Cadastro de Instrumentos</title>
+	<title>Atualizar Instrumento</title>
 
 	<style type="text/css">
 .ui-g div {
@@ -21,10 +21,18 @@
 
 	<h:form id="formulario">
 
-		<p:panel id="panel" header="Cadastrar Instrumentos"
+		<p:panel id="panel" header="Atualizar Instrumento"
 			style="margin-top: 40px; margin-bottom: 10px">
 
 			<p:growl id="messages" showDetail="true" />
+
+			<div class="ui-g">
+				<div class="ui-g-6">
+					<p:inputText style="width: 100%"
+						value="#{instrumentoBean.instrumento.id}" id="id"
+						placeholder="Id" required="true"/>
+				</div>
+			</div>
 
 			<div class="ui-g">
 				<div class="ui-g-6">
@@ -55,11 +63,10 @@
 			<div class="ui-g">
 
 				<div class="ui-g-6">
-					<p:commandButton value="Cadastrar"
-						action="#{instrumentoBean.salvar}" update="formulario" />
+					<p:commandButton value="Atualizar" action="#{instrumentoBean.update}"
+					update="formulario" />
 				</div>
 				<div class="ui-g-6">
-
 					<p:link outcome="listagem" value="Listagem" />
 				</div>
 
